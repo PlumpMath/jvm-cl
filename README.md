@@ -2,11 +2,17 @@
 
 Simple custom ClassLoader project illustrating how to swap class definition in runtime using JAR file downloaded from the remote server. 
 
-First of all we create a new instance of StandardPen. No magic - using simple 'new' keyword and class name from the package. 
-Then class' fields are printed. We can observe that this instance is made using standard Sun AppClassLoader.
-Next, we swap the variable definition with custom class got from the remote server in a JAR file.
-After all details of the old-new Penable :) instance are printed the whole situation is clear - our Pen now says that it's made with custom MyClassLoader 
-and  its fields have different values.
+```
+Welcome to the custom JarClassLoader demo!
+Our new pen appears. This one is created using application's ClassLoader:
+	Make: Standard pen	/ Color: Standard color 	/ ClassLoader: sun.misc.Launcher$AppClassLoader@2b193f2d
+Now the magic begins. We swap our little pen definition in runtime with the custom pen class got from www.nadoba.pl/pen.jar
+Our old-new pen says Hi again:
+	Make: Parker	/ Color: black 	/ ClassLoader: pl.nadoba.cl.MyClassLoader@6b884d57
+We can observe that the same object has now the whole different definition.
+
+Process finished with exit code 0
+```
 
 
 ## running the project
