@@ -12,11 +12,11 @@ public class PenFactory {
 
     public static Penable getPenOverTheInternet() throws InstantiationException, IllegalAccessException, ClassNotFoundException, MalformedURLException {
 
-        URL[] urls = new URL[]{new URL("jar:http://www.nadoba.pl/pen.jar!/pl/nadoba/cl/pen/Pen.class")};
+        URL[] urls = new URL[]{new URL("jar:http://www.nadoba.pl/pen.jar!/pl/nadoba/cl/Pen.class")};
 
         ClassLoader myCL = new MyClassLoader(urls);
 
-        return (Penable) myCL.loadClass("pl.nadoba.cl.pen.Pen").newInstance();
+        return (Penable) myCL.loadClass("pl.nadoba.cl.Pen").newInstance();
     }
 }
 
@@ -29,10 +29,19 @@ class MyClassLoader extends URLClassLoader {
         this.url = urls[0];
     }
 
-
     @Override
     public Class<?> loadClass(String name) throws ClassNotFoundException {
+        if (name.endsWith("Pen")) {
+            return findClass(name);
+        }
+
+        return super.loadClass(name);
+    }
+
+    @Override
+    public Class<?> findClass(String name) throws ClassNotFoundException {
         byte[] bytes = null;
+
         try {
             URLConnection connection = url.openConnection();
             InputStream input = connection.getInputStream();
@@ -50,6 +59,7 @@ class MyClassLoader extends URLClassLoader {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         Class<?> result = this.defineClass(name, bytes, 0, bytes.length);
         return result;
     }

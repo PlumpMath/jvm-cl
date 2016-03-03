@@ -6,8 +6,8 @@ public class StandardPen implements Penable {
     private String color;
 
     public StandardPen() {
-        this.make = "Standard pen from this app";
-        this.color = "Standard boring color";
+        this.make = "Standard pen";
+        this.color = "Standard color";
     }
 
     public String getMake() {
