@@ -14,7 +14,4 @@ We can observe that the same object has now the whole different definition.
 Process finished with exit code 0
 ```
 
-
-## running the project
-
-`mvn compile exec:java`
+### Strangely doesn't work with exec-maven-plugin
